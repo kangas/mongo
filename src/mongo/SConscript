@@ -93,21 +93,22 @@ env.CppUnitTest( "stringutils_test", [ "util/stringutils_test.cpp" ],
                  LIBDEPS=["stringutils"] )
 
 env.Library('bson', [
-        'bson/mutable/document.cpp',
-        'bson/mutable/element.cpp',
-        'bson/util/bson_extract.cpp',
-        'util/safe_num.cpp',
-        'bson/bson_validate.cpp',
-        'bson/oid.cpp',
         "bson/optime.cpp",
         'bson/bson_startuptest.cpp',
+        'bson/bson_validate.cpp',
         'bson/bsonelement.cpp',
         'bson/bsonmisc.cpp',
         'bson/bsonobj.cpp',
         'bson/bsonobjbuilder.cpp',
         'bson/bsonobjiterator.cpp',
         'bson/bsontypes.cpp',
-        'db/json.cpp'
+        'bson/mutable/document.cpp',
+        'bson/mutable/element.cpp',
+        'bson/oid.cpp',
+        'bson/util/bson_extract.cpp',
+        'bson/util/bson_set.cpp',
+        'db/json.cpp',
+        'util/safe_num.cpp',
         ], LIBDEPS=[
         'base/base',
         'md5',
@@ -153,6 +154,9 @@ env.CppUnitTest('update_index_data_test', ['db/update_index_data_test.cpp'],
                 LIBDEPS=['bson','update_index_data','db/common'])
 
 env.CppUnitTest('oid_test', ['bson/oid_test.cpp'],
+                LIBDEPS=['bson'])
+
+env.CppUnitTest(target='bson_set_test', source=['bson/util/bson_set_test.cpp'],
                 LIBDEPS=['bson'])
 
 env.Library('path',
